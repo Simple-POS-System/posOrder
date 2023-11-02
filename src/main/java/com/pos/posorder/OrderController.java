@@ -29,5 +29,9 @@ public class OrderController {
         return orderService.getOrderByOrderId(orderId);
     }
 
+    @PutMapping("/setStatus/{orderId}/{orderStatus}")
+    public ResponseEntity<?> setStatus(@PathVariable String orderId, @PathVariable OrderStatus orderStatus){
+        return orderService.setStatus(orderId, orderStatus);
+    }
 
 }

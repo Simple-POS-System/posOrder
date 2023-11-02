@@ -9,6 +9,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.pos.posorder.OrderStatus.*;
+
 @Service
 public class OrderService {
 
@@ -33,7 +35,7 @@ public class OrderService {
     public ResponseEntity<Order> saveOrder(Order order){
         order.setOrderId(generateProductId());
         order.setOrderTime(getCurrentTime());
-        order.setOrderStatus(OrderStatus.PACKING);
+        order.setOrderStatus(PACKING);
         return ResponseEntity.ok(orderRepository.save(order));
     }
 
@@ -43,5 +45,14 @@ public class OrderService {
 
     public ResponseEntity<?> getOrderByOrderId(String orderId){
         return ResponseEntity.ok(orderRepository.getOrderByOrderId(orderId));
+    }
+
+    public ResponseEntity<?> setStatus(String orderId, OrderStatus orderStatus){
+        Order order = orderRepository.getOrderByOrderId(orderId);
+        if(order == null){
+            return ResponseEntity.badRequest().body("Order not found");
+        }
+        order.setOrderStatus(orderStatus);
+        return ResponseEntity.ok(orderRepository.save(order));
     }
 }
