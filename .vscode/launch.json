@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PosOrderApplication<posOrder>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.pos.posorder.PosOrderApplication",
+            "projectName": "posOrder",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
