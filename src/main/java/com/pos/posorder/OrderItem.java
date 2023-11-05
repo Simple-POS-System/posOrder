@@ -8,6 +8,7 @@ import lombok.Setter;
 public class OrderItem {
     private String productId;
     private int quantity;
+    private int unitPrice;
 
     @Override
     public String toString() {
